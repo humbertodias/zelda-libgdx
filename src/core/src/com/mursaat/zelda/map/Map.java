@@ -163,7 +163,7 @@ public class Map
         }
     }
 
-    public synchronized void updateChunksArray()
+    public void updateChunksArray()
     {
         final int xChunkHero = World.getHero().getXChunk();
         final int yChunkHero = World.getHero().getYChunk();
