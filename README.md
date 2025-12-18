@@ -1,4 +1,4 @@
-[![Desktop](https://github.com/humbertodias/zelda-libgdx/actions/workflows/desktop-build.yml/badge.svg)](https://github.com/humbertodias/zelda-libgdx/actions/workflows/desktop-build.yml)
+[![Desktop](https://github.com/humbertodias/zelda-libgdx/actions/workflows/deploy-desktop.yml/badge.svg)](https://github.com/humbertodias/zelda-libgdx/actions/workflows/deploy-desktop.yml)
 [![Web](https://github.com/humbertodias/zelda-libgdx/actions/workflows/deploy-web.yml/badge.svg)](https://github.com/humbertodias/zelda-libgdx/actions/workflows/deploy-web.yml)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/humbertodias/zelda-libgdx)
 ![GitHub all releases](https://img.shields.io/github/downloads/humbertodias/zelda-libgdx/total)
