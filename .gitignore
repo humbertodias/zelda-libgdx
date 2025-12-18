@@ -22,6 +22,9 @@ out/
 build/
 .gradle/
 
+# GWT war assets (generated during build)
+src/html/war/
+
 # Local configuration file (sdk path, etc)
 local.properties
 
