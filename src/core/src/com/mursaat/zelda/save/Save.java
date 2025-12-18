@@ -1,5 +1,6 @@
 package com.mursaat.zelda.save;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Rectangle;
@@ -20,13 +21,39 @@ public class Save
 {
     public static String saveName = "save";
 
+    /**
+     * Get a FileHandle appropriate for the current platform.
+     * Desktop: uses local() for read-write access
+     * Web/GWT: returns null as file system operations are not supported
+     */
+    private static FileHandle getFileHandle(String path) {
+        if (Gdx.app.getType() == Application.ApplicationType.WebGL) {
+            // Web platform doesn't support file system operations
+            return null;
+        }
+        return Gdx.files.local(path);
+    }
+
+    /**
+     * Check if save operations are supported on the current platform.
+     */
+    private static boolean isSaveSupported() {
+        return Gdx.app.getType() != Application.ApplicationType.WebGL;
+    }
+
     public static void loadOrCreateSave()
     {
         World.initHero();
         World.setCurrentMap(new Map());
         World.getCurrentMap().initMap();
 
-        FileHandle playerData = Gdx.files.external(saveName + "/player/player.data");
+        // Skip save operations on web platform
+        if (!isSaveSupported()) {
+            Gdx.app.log("Save", "Save operations not supported on web platform - starting new game");
+            return;
+        }
+
+        FileHandle playerData = getFileHandle(saveName + "/player/player.data");
         try
         {
             if (playerData.exists())
@@ -49,7 +76,7 @@ public class Save
                     for (int y = yChunk - 1; y <= yChunk + 1; y++)
                     {
                         String filename = saveName + "/world/" + x + "." + y + ".chunk";
-                        FileHandle chunkData = Gdx.files.external(filename);
+                        FileHandle chunkData = getFileHandle(filename);
                         if (chunkData.exists())
                         {
                             // Si le fichier chunk existe, on le charge en mémoire
@@ -76,8 +103,14 @@ public class Save
 
     public static void saveChunk(Chunk chunk, boolean destroyEntities)
     {
+        // Skip save operations on web platform
+        if (!isSaveSupported()) {
+            return;
+        }
+
         String filename = saveName + "/world/" + chunk.x + "." + chunk.y + ".chunk";
-        FileHandle chunkData = Gdx.files.external(filename);
+        FileHandle chunkData = getFileHandle(filename);
+
         // Créer le fichier
         try
         {
@@ -134,8 +167,12 @@ public class Save
 
     public static FileHandle getChunkFile(int chunkX, int chunkY)
     {
+        if (!isSaveSupported()) {
+            return null;
+        }
+
         String filename = saveName + "/world/" + chunkX + "." + chunkY + ".chunk";
-        FileHandle chunkData = Gdx.files.external(filename);
+        FileHandle chunkData = getFileHandle(filename);
         return chunkData.exists() ? chunkData : null;
     }
 }
