@@ -15,13 +15,13 @@ RPG game like Zelda using libGDX Library
 Clone
 
 ```
-git clone https://github.com/humbertodias/game-zelda-libgdx.git
+git clone https://github.com/humbertodias/zelda-libgdx.git
 ```
 
 Inside the folder
 
 ```
-cd game-zelda-libgdx/src
+cd zelda-libgdx/src
 ```
 
 Run
