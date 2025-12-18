@@ -13,7 +13,6 @@ import com.mursaat.zelda.tiles.Tile;
 import com.mursaat.zelda.world.World;
 
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Mursaat

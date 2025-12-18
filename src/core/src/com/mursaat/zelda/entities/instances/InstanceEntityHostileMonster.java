@@ -15,7 +15,6 @@ import com.mursaat.zelda.tiles.Tile;
 import com.mursaat.zelda.world.World;
 
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Aurelien on 23/12/2015.
@@ -362,7 +361,7 @@ public abstract class InstanceEntityHostileMonster extends InstanceLivingEntity
         {
             for (int j = yChunk - 1; j <= yChunk + 1; j++)
             {
-                ConcurrentHashMap<Integer, Chunk> map = World.getCurrentMap().chunks.get(i);
+                HashMap<Integer, Chunk> map = World.getCurrentMap().chunks.get(i);
                 if (map != null)
                 {
                     Chunk chunk = map.get(j);

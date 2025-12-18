@@ -20,9 +20,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Mursaat
@@ -42,17 +39,17 @@ public class Map
     public int yChunk;
 
     // Les entités présentes sur la map
-    public CopyOnWriteArrayList<InstanceEntity> entities;
+    public ArrayList<InstanceEntity> entities;
 
     // Les chunks chargés de la map
-    public ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, Chunk>> chunks;
+    public HashMap<Integer, HashMap<Integer, Chunk>> chunks;
     /* Les TileEntities chargées associées à la map. L'HashMap contient en clé les coordonnées
        du TileEntity. */
     private HashMap<Pair<Integer, Integer>, TileEntity> tileEntities;
 
     public Map()
     {
-        entities = new CopyOnWriteArrayList<InstanceEntity>();
+        entities = new ArrayList<InstanceEntity>();
     }
 
     public void initMap()
@@ -60,11 +57,11 @@ public class Map
         xChunk = World.getHero().getXChunk();
         yChunk = World.getHero().getYChunk();
 
-        chunks = new ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, Chunk>>();
+        chunks = new HashMap<Integer, HashMap<Integer, Chunk>>();
 
         for (int i = xChunk - MAP_CHUNK_SIZE_HALF; i <= xChunk + MAP_CHUNK_SIZE_HALF; i++)
         {
-            chunks.put(i, new ConcurrentHashMap<Integer, Chunk>());
+            chunks.put(i, new HashMap<Integer, Chunk>());
             for (int j = yChunk - MAP_CHUNK_SIZE_HALF; j <= yChunk + MAP_CHUNK_SIZE_HALF; j++)
             {
                 Chunk chunk = new Chunk(i, j);
@@ -128,9 +125,9 @@ public class Map
         updateChunksArray();
 
         // On dessine d'abord tous les tiles
-        for (java.util.Map.Entry<Integer, ConcurrentHashMap<Integer, Chunk>> entryX : chunks.entrySet())
+        for (java.util.Map.Entry<Integer, HashMap<Integer, Chunk>> entryX : chunks.entrySet())
         {
-            ConcurrentHashMap<Integer, Chunk> map = entryX.getValue();
+            HashMap<Integer, Chunk> map = entryX.getValue();
             for (java.util.Map.Entry<Integer, Chunk> entryY : map.entrySet())
             {
                 Chunk chunk = entryY.getValue();
@@ -138,9 +135,9 @@ public class Map
             }
         }
         // Par dessus on dessine les structures
-        for (java.util.Map.Entry<Integer, ConcurrentHashMap<Integer, Chunk>> entryX : chunks.entrySet())
+        for (java.util.Map.Entry<Integer, HashMap<Integer, Chunk>> entryX : chunks.entrySet())
         {
-            ConcurrentHashMap<Integer, Chunk> map = entryX.getValue();
+            HashMap<Integer, Chunk> map = entryX.getValue();
             for (java.util.Map.Entry<Integer, Chunk> entryY : map.entrySet())
             {
                 Chunk chunk = entryY.getValue();
@@ -209,7 +206,7 @@ public class Map
                 {
                     if (!chunks.containsKey(i))
                     {
-                        chunks.put(i, new ConcurrentHashMap<Integer, Chunk>());
+                        chunks.put(i, new HashMap<Integer, Chunk>());
                     }
                     if (!chunks.get(i).containsKey(yChunk - MAP_CHUNK_SIZE_HALF))
                     {
@@ -242,7 +239,7 @@ public class Map
                 {
                     if (chunks.get(i) == null)
                     {
-                        chunks.put(i, new ConcurrentHashMap<Integer, Chunk>());
+                        chunks.put(i, new HashMap<Integer, Chunk>());
                     }
                     if (!chunks.get(i).containsKey(yChunk + MAP_CHUNK_SIZE_HALF))
                     {
@@ -274,7 +271,7 @@ public class Map
             case LEFT:
                 if (!chunks.containsKey(xChunk - MAP_CHUNK_SIZE_HALF))
                 {
-                    chunks.put(xChunk - MAP_CHUNK_SIZE_HALF, new ConcurrentHashMap<Integer, Chunk>());
+                    chunks.put(xChunk - MAP_CHUNK_SIZE_HALF, new HashMap<Integer, Chunk>());
                 }
                 for (int j = yChunk - MAP_CHUNK_SIZE_HALF; j <= yChunk + MAP_CHUNK_SIZE_HALF; j++)
                 {
@@ -308,7 +305,7 @@ public class Map
             case RIGHT:
                 if (!chunks.containsKey(xChunk + MAP_CHUNK_SIZE_HALF))
                 {
-                    chunks.put(xChunk + MAP_CHUNK_SIZE_HALF, new ConcurrentHashMap<Integer, Chunk>());
+                    chunks.put(xChunk + MAP_CHUNK_SIZE_HALF, new HashMap<Integer, Chunk>());
                 }
                 for (int j = yChunk - MAP_CHUNK_SIZE_HALF; j <= yChunk + MAP_CHUNK_SIZE_HALF; j++)
                 {
