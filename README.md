@@ -3,11 +3,11 @@
 RPG game like Zelda using libGDX Library
 
 
-## Prerequires
+## Prerequisites
 
 1. Git 2.6+
-2. Gradle 2.11+
-3. Java 8+
+2. Gradle 8.5+ (wrapper included)
+3. Java 11+
 
 
 ## How to Play
@@ -27,12 +27,19 @@ cd game-zelda-libgdx/src
 Run
 
 ```
-gradle desktop:run
+./gradlew desktop:run
 ```
 
 
 ## Output
 ![Preview](doc/zelda-libgdx.gif)
+
+## Technical Details
+
+- **libGDX Version**: 1.13.0
+- **Gradle Version**: 8.5
+- **Java Version**: 11+
+- **LWJGL Version**: 3 (desktop backend)
 
 ## How it was made
 First I had to download the **App Setup**

@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AnimatedTile extends Tile
 {
     protected TextureRegion[] frames;
-    protected Animation animation;
+    protected Animation<TextureRegion> animation;
 
     public AnimatedTile(String name, int id)
     {
@@ -23,7 +23,7 @@ public class AnimatedTile extends Tile
         {
             frames[i] = tmp[0][i];
         }
-        animation = new Animation(0.5f, frames);
+        animation = new Animation<TextureRegion>(0.5f, frames);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AnimatedTile extends Tile
         {
             frames[i] = tmp[0][i];
         }
-        animation = new Animation(0.5f, frames);
+        animation = new Animation<TextureRegion>(0.5f, frames);
         animation.setPlayMode(playMode);
         animation.setFrameDuration(frameDuration);
     }

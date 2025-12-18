@@ -1,31 +1,30 @@
-apply plugin: "java"
-apply plugin: "jetty"
+apply plugin: "java-library"
+apply plugin: "gwt"
+apply plugin: "war"
 
 gwt {
-    gwtVersion='2.6.0' // Should match the gwt version used for building the gwt backend
-    maxHeapSize="1G" // Default 256m is not enough for gwt compiler. GWT is HUNGRY
-    minHeapSize="1G"
+    gwtVersion = '2.8.2' // Should match the gwt version used for building the gwt backend
+    maxHeapSize = "1G" // Default 256m is not enough for gwt compiler. GWT is HUNGRY
+    minHeapSize = "1G"
 
     src = files(file("src/")) // Needs to be in front of "modules" below.
     modules 'com.mursaat.zelda.GdxDefinition'
     devModules 'com.mursaat.zelda.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
-    compiler {
-        strict = true;
-        enableClosureCompiler = true;
-        disableCastChecking = true;
+    compiler.strict = true
+    compiler.disableCastChecking = true
+}
+
+task draftRun {
+    dependsOn draftWar
+    doLast {
+        java.awt.Desktop.desktop.browse(
+            new File(project.buildDir, 'gwt/draftOut').toURI())
     }
 }
 
-task draftRun(type: JettyRunWar) {
-    dependsOn draftWar
-    dependsOn.remove('war')
-    webApp=draftWar.archivePath
-    daemon=true
-}
-
-task superDev(type: de.richsource.gradle.plugins.gwt.GwtSuperDev) {
+task superDev(type: org.wisepersist.gradle.plugins.gwt.GwtSuperDev) {
     dependsOn draftRun
     doFirst {
     	gwt.modules = gwt.devModules
@@ -42,7 +41,7 @@ task dist(dependsOn: [clean, compileGwt]) {
         copy {
             from "webapp"
             into "build/dist"
-            }
+        }
         copy {
             from "war"
             into "build/dist"
@@ -54,14 +53,17 @@ draftWar {
    from "war"
 }
 
-task addSource << {
-	sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
+task addSource {
+	doLast {
+		sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
+	}
 }
 
 tasks.compileGwt.dependsOn(addSource)
 tasks.draftCompileGwt.dependsOn(addSource)
 
-sourceCompatibility = 1.6
+sourceCompatibility = 11
+targetCompatibility = 11
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 
