@@ -24,19 +24,19 @@ public abstract class LivingEntity extends Entity
     public TextureRegion[][] textureFrames;
 
     // Animations de déplacement
-    public Animation animMoveTop;
-    public Animation animMoveBottom;
-    public Animation animMoveLeft;
-    public Animation animMoveRight;
+    public Animation<TextureRegion> animMoveTop;
+    public Animation<TextureRegion> animMoveBottom;
+    public Animation<TextureRegion> animMoveLeft;
+    public Animation<TextureRegion> animMoveRight;
 
     // Animation de déplacement (avec dégats subis)
-    public Animation animMoveTopDamaged;
-    public Animation animMoveBottomDamaged;
-    public Animation animMoveLeftDamaged;
-    public Animation animMoveRightDamaged;
+    public Animation<TextureRegion> animMoveTopDamaged;
+    public Animation<TextureRegion> animMoveBottomDamaged;
+    public Animation<TextureRegion> animMoveLeftDamaged;
+    public Animation<TextureRegion> animMoveRightDamaged;
 
     // Animation de mort
-    protected Animation animDeadRotate;
+    protected Animation<TextureRegion> animDeadRotate;
 
     public LivingEntity(String textureName, String name, int id, int maxLife, float damage, float moveSpeed)
     {

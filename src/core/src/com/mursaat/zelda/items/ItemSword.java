@@ -21,10 +21,10 @@ public class ItemSword extends Item
     public TextureRegion[][] textureFrames;
 
     // Animations
-    public Animation animSlashTop;
-    public Animation animSlashBottom;
-    public Animation animSlashLeft;
-    public Animation animSlashRight;
+    public Animation<TextureRegion> animSlashTop;
+    public Animation<TextureRegion> animSlashBottom;
+    public Animation<TextureRegion> animSlashLeft;
+    public Animation<TextureRegion> animSlashRight;
 
     // Le temps pour donner une coup d'épée
     public final float slashTime;
@@ -49,16 +49,16 @@ public class ItemSword extends Item
     protected void makeAnimations()
     {
         // MOVE
-        this.animSlashBottom = new Animation(slashTime /4, this.textureFrames[0][0], this.textureFrames[0][1], this.textureFrames[0][2], this.textureFrames[0][2]);
+        this.animSlashBottom = new Animation<TextureRegion>(slashTime /4, this.textureFrames[0][0], this.textureFrames[0][1], this.textureFrames[0][2], this.textureFrames[0][2]);
         this.animSlashBottom.setPlayMode(Animation.PlayMode.LOOP);
 
-        this.animSlashLeft = new Animation(slashTime /4, this.textureFrames[1][0], this.textureFrames[1][1], this.textureFrames[1][2], this.textureFrames[1][2]);
+        this.animSlashLeft = new Animation<TextureRegion>(slashTime /4, this.textureFrames[1][0], this.textureFrames[1][1], this.textureFrames[1][2], this.textureFrames[1][2]);
         this.animSlashLeft.setPlayMode(Animation.PlayMode.LOOP);
 
-        this.animSlashRight = new Animation(slashTime /4, this.textureFrames[2][0], this.textureFrames[2][1], this.textureFrames[2][2], this.textureFrames[2][2]);
+        this.animSlashRight = new Animation<TextureRegion>(slashTime /4, this.textureFrames[2][0], this.textureFrames[2][1], this.textureFrames[2][2], this.textureFrames[2][2]);
         this.animSlashRight.setPlayMode(Animation.PlayMode.LOOP);
 
-        this.animSlashTop = new Animation(slashTime /4, this.textureFrames[3][0], this.textureFrames[3][1], this.textureFrames[3][2], this.textureFrames[3][2]);
+        this.animSlashTop = new Animation<TextureRegion>(slashTime /4, this.textureFrames[3][0], this.textureFrames[3][1], this.textureFrames[3][2], this.textureFrames[3][2]);
         this.animSlashTop.setPlayMode(Animation.PlayMode.LOOP);
     }
 

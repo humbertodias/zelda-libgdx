@@ -12,16 +12,16 @@ public class Animations
 {
     protected static final String PATH = "sprites/animations/";
 
-    public static Animation monsterDeathAnimation;
+    public static Animation<TextureRegion> monsterDeathAnimation;
 
     public static void registerAnimations()
     {
         monsterDeathAnimation = createAnimation("monster_death_animation", 0.1f, 32, 32, Animation.PlayMode.LOOP_REVERSED);
     }
 
-    public static Animation createAnimation(String name, float frameTime, int regionWidth, int regionHeight, Animation.PlayMode mode)
+    public static Animation<TextureRegion> createAnimation(String name, float frameTime, int regionWidth, int regionHeight, Animation.PlayMode mode)
     {
-        Animation animation = new Animation(frameTime, TextureRegion.split(new Texture(Gdx.files.internal(PATH + name + ".png")), regionWidth, regionHeight)[0]);
+        Animation<TextureRegion> animation = new Animation<TextureRegion>(frameTime, TextureRegion.split(new Texture(Gdx.files.internal(PATH + name + ".png")), regionWidth, regionHeight)[0]);
         animation.setPlayMode(mode);
         return animation;
     }

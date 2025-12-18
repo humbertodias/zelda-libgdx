@@ -18,8 +18,6 @@ import com.mursaat.zelda.sound.Sounds;
 import com.mursaat.zelda.structures.InstanceStructure;
 import com.mursaat.zelda.tiles.Tile;
 import com.mursaat.zelda.world.World;
-import com.sun.javafx.geom.Arc2D;
-import com.sun.javafx.geom.RectBounds;
 
 import java.util.ArrayList;
 
@@ -193,20 +191,20 @@ public class InstanceEntityHero extends InstanceLivingEntity implements InputPro
     public void handleSwordArcHit()
     {
         Rectangle c = getCollisionBounds();
-        Arc2D swordArc = null;
+        Rectangle swordRect = new Rectangle();
         switch (orientation)
         {
             case BOTTOM:
-                swordArc = new Arc2D(c.x - sword.allonge, c.y - sword.allonge, c.width + (sword.allonge * 2), c.height + (sword.allonge * 2), 90, 90, Arc2D.PIE);
+                swordRect.set(c.x - sword.allonge / 2, c.y - sword.allonge, c.width + sword.allonge, sword.allonge + c.height / 2);
                 break;
             case TOP:
-                swordArc = new Arc2D(c.x - sword.allonge, c.y - sword.allonge, c.width + (sword.allonge * 2), c.height + (sword.allonge * 2), 270, 90, Arc2D.PIE);
+                swordRect.set(c.x - sword.allonge / 2, c.y + c.height / 2, c.width + sword.allonge, sword.allonge + c.height / 2);
                 break;
             case LEFT:
-                swordArc = new Arc2D(c.x - sword.allonge, c.y - sword.allonge, c.width + (sword.allonge * 2), c.height + (sword.allonge * 2), 180, 90, Arc2D.PIE);
+                swordRect.set(c.x - sword.allonge, c.y - sword.allonge / 2, sword.allonge + c.width / 2, c.height + sword.allonge);
                 break;
             case RIGHT:
-                swordArc = new Arc2D(c.x - sword.allonge, c.y - sword.allonge, c.width + (sword.allonge * 2), c.height + (sword.allonge * 2), 270, 90, Arc2D.PIE);
+                swordRect.set(c.x + c.width / 2, c.y - sword.allonge / 2, sword.allonge + c.width / 2, c.height + sword.allonge);
                 break;
         }
 
@@ -215,7 +213,7 @@ public class InstanceEntityHero extends InstanceLivingEntity implements InputPro
             if (entity instanceof InstanceEntityHostileMonster && ((InstanceEntityHostileMonster) entity).alive)
             {
                 Rectangle r = ((InstanceEntityHostileMonster) entity).getDamageBounds();
-                if (swordArc.intersects(new RectBounds(r.x, r.y, r.x + r.width, r.y + r.height)))
+                if (swordRect.overlaps(r))
                 {
                     ((InstanceEntityHostileMonster) entity).hurt(2f, this, sword);
                 }
@@ -793,7 +791,13 @@ public class InstanceEntityHero extends InstanceLivingEntity implements InputPro
     }
 
     @Override
-    public boolean scrolled(int amount)
+    public boolean scrolled(float amountX, float amountY)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean touchCancelled(int screenX, int screenY, int pointer, int button)
     {
         return false;
     }
