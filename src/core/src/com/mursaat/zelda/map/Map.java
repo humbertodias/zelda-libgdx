@@ -172,33 +172,26 @@ public class Map
         final int yChunkHero = World.getHero().getYChunk();
         if (xChunkHero != xChunk || yChunkHero != yChunk)
         {
-            new Thread()
+            if (xChunkHero < xChunk)
             {
-                @Override
-                public void run()
-                {
-                    if (xChunkHero < xChunk)
-                    {
-                        xChunk = xChunkHero;
-                        loadChunks(Orientation.LEFT);
-                    }
-                    if (xChunkHero > xChunk)
-                    {
-                        xChunk = xChunkHero;
-                        loadChunks(Orientation.RIGHT);
-                    }
-                    if (yChunkHero < yChunk)
-                    {
-                        yChunk = yChunkHero;
-                        loadChunks(Orientation.BOTTOM);
-                    }
-                    if (yChunkHero > yChunk)
-                    {
-                        yChunk = yChunkHero;
-                        loadChunks(Orientation.TOP);
-                    }
-                }
-            }.start();
+                xChunk = xChunkHero;
+                loadChunks(Orientation.LEFT);
+            }
+            if (xChunkHero > xChunk)
+            {
+                xChunk = xChunkHero;
+                loadChunks(Orientation.RIGHT);
+            }
+            if (yChunkHero < yChunk)
+            {
+                yChunk = yChunkHero;
+                loadChunks(Orientation.BOTTOM);
+            }
+            if (yChunkHero > yChunk)
+            {
+                yChunk = yChunkHero;
+                loadChunks(Orientation.TOP);
+            }
         }
     }
 
