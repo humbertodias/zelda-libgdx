@@ -54,10 +54,6 @@ public class Save
         }
 
         FileHandle playerData = getFileHandle(saveName + "/player/player.data");
-        if (playerData == null) {
-            return;
-        }
-
         try
         {
             if (playerData.exists())
@@ -81,7 +77,7 @@ public class Save
                     {
                         String filename = saveName + "/world/" + x + "." + y + ".chunk";
                         FileHandle chunkData = getFileHandle(filename);
-                        if (chunkData != null && chunkData.exists())
+                        if (chunkData.exists())
                         {
                             // Si le fichier chunk existe, on le charge en mémoire
                             World.getCurrentMap().loadChunkFile(x + xChunk, y + yChunk, chunkData);
@@ -114,9 +110,6 @@ public class Save
 
         String filename = saveName + "/world/" + chunk.x + "." + chunk.y + ".chunk";
         FileHandle chunkData = getFileHandle(filename);
-        if (chunkData == null) {
-            return;
-        }
 
         // Créer le fichier
         try
@@ -180,9 +173,6 @@ public class Save
 
         String filename = saveName + "/world/" + chunkX + "." + chunkY + ".chunk";
         FileHandle chunkData = getFileHandle(filename);
-        if (chunkData == null) {
-            return null;
-        }
         return chunkData.exists() ? chunkData : null;
     }
 }
