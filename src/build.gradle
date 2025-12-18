@@ -40,6 +40,13 @@ project(":desktop") {
         implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
     }
+
+
+    tasks.withType(JavaExec).configureEach {
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+            jvmArgs "-XstartOnFirstThread"
+        }
+    }
 }
 
 project(":ios") {
