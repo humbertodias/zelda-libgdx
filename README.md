@@ -1,3 +1,9 @@
+[![Desktop](https://github.com/humbertodias/zelda-libgdx/actions/workflows/desktop-build.yml/badge.svg)](https://github.com/humbertodias/zelda-libgdx/actions/workflows/desktop-build.yml)
+[![Web](https://github.com/humbertodias/zelda-libgdx/actions/workflows/deploy-web.yml/badge.svg)](https://github.com/humbertodias/zelda-libgdx/actions/workflows/deploy-web.yml)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/humbertodias/zelda-libgdx)
+![GitHub all releases](https://img.shields.io/github/downloads/humbertodias/zelda-libgdx/total)
+
+
 # Games with libGDX
 
 RPG game like Zelda using libGDX Library
