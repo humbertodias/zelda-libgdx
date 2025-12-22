@@ -146,19 +146,16 @@ public class Map
         }
 
         // Dessin des entités
-        for (InstanceEntity entity : entities)
-        {
-            entity.update();
-            entity.draw(batch, deltaTime);
-        }
-
-        // Si une créature doit disparaitre on l'enleve
         for(Iterator<InstanceEntity> it = entities.iterator(); it.hasNext();)
         {
             InstanceEntity entity = it.next();
+            entity.update();
+            entity.draw(batch, deltaTime);
+            
+            // Si une créature doit disparaitre on l'enleve
             if (entity instanceof InstanceLivingEntity && ((InstanceLivingEntity) entity).mustBeRemoved)
             {
-                entities.remove(entity);
+                it.remove();
             }
         }
     }
