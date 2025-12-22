@@ -53,6 +53,11 @@ draftWar {
    from "war"
 }
 
+task copyAssets(type: Copy) {
+	from "../android/assets"
+	into "webapp/assets"
+}
+
 task addSource {
 	doLast {
 		sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
@@ -60,7 +65,9 @@ task addSource {
 }
 
 tasks.compileGwt.dependsOn(addSource)
+tasks.compileGwt.dependsOn(copyAssets)
 tasks.draftCompileGwt.dependsOn(addSource)
+tasks.draftCompileGwt.dependsOn(copyAssets)
 
 sourceCompatibility = 11
 targetCompatibility = 11

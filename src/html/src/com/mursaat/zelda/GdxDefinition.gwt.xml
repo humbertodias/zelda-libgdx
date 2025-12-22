@@ -7,5 +7,5 @@
 	<inherits name='Zelda' />
 	<entry-point class='com.mursaat.zelda.client.HtmlLauncher' />
 	
-	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
+	<set-configuration-property name="gdx.assetpath" value="webapp/assets" />
 </module>
