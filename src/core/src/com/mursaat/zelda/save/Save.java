@@ -26,7 +26,7 @@ public class Save
         World.setCurrentMap(new Map());
         World.getCurrentMap().initMap();
 
-        FileHandle playerData = Gdx.files.local(saveName + "/player/player.data");
+        FileHandle playerData = Gdx.files.external(saveName + "/player/player.data");
 
         try
         {
@@ -51,7 +51,7 @@ public class Save
                     for (int y = yChunk - 1; y <= yChunk + 1; y++)
                     {
                         String filename = saveName + "/world/" + x + "." + y + ".chunk";
-                        FileHandle chunkData = Gdx.files.local(filename);
+                        FileHandle chunkData = Gdx.files.external(filename);
 
                         if (chunkData.exists())
                         {
@@ -79,7 +79,7 @@ public class Save
     public static void saveChunk(Chunk chunk, boolean destroyEntities)
     {
         String filename = saveName + "/world/" + chunk.x + "." + chunk.y + ".chunk";
-        FileHandle chunkData = Gdx.files.local(filename);
+        FileHandle chunkData = Gdx.files.external(filename);
 
         if (chunkData.exists())
         {
@@ -134,7 +134,7 @@ public class Save
     public static FileHandle getChunkFile(int chunkX, int chunkY)
     {
         String filename = saveName + "/world/" + chunkX + "." + chunkY + ".chunk";
-        FileHandle chunkData = Gdx.files.local(filename);
+        FileHandle chunkData = Gdx.files.external(filename);
         return chunkData.exists() ? chunkData : null;
     }
 }
