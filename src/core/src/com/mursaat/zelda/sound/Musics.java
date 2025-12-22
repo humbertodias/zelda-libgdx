@@ -12,6 +12,6 @@ public class Musics
 
     public static void registerMusics()
     {
-        exterieur = Gdx.audio.newMusic(Gdx.files.internal("musics/exterieur.mp3"));
+        exterieur = Gdx.audio.newMusic(Gdx.files.internal("musics/exterieur.ogg"));
     }
 }

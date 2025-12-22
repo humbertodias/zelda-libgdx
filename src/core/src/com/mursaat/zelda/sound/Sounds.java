@@ -18,12 +18,12 @@ public class Sounds
 
     public static void registerSounds()
     {
-        heroHurt = Gdx.audio.newSound(Gdx.files.internal("sounds/hero_hurt.mp3"));
-        enemyHurt = Gdx.audio.newSound(Gdx.files.internal("sounds/enemy_hurt.mp3"));
-        enemyDie = Gdx.audio.newSound(Gdx.files.internal("sounds/enemy_die.mp3"));
+        heroHurt = Gdx.audio.newSound(Gdx.files.internal("sounds/hero_hurt.ogg"));
+        enemyHurt = Gdx.audio.newSound(Gdx.files.internal("sounds/enemy_hurt.ogg"));
+        enemyDie = Gdx.audio.newSound(Gdx.files.internal("sounds/enemy_die.ogg"));
 
-        swordSlash1 = Gdx.audio.newSound(Gdx.files.internal("sounds/sword_slash_1.mp3"));
-        swordSlash2 = Gdx.audio.newSound(Gdx.files.internal("sounds/sword_slash_2.mp3"));
-        swordSlash3 = Gdx.audio.newSound(Gdx.files.internal("sounds/sword_slash_3.mp3"));
+        swordSlash1 = Gdx.audio.newSound(Gdx.files.internal("sounds/sword_slash_1.ogg"));
+        swordSlash2 = Gdx.audio.newSound(Gdx.files.internal("sounds/sword_slash_2.ogg"));
+        swordSlash3 = Gdx.audio.newSound(Gdx.files.internal("sounds/sword_slash_3.ogg"));
     }
 }
