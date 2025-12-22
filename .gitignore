@@ -24,6 +24,7 @@ build/
 
 # GWT war assets (generated during build)
 src/html/war/
+src/html/webapp/assets/
 
 # Local configuration file (sdk path, etc)
 local.properties
