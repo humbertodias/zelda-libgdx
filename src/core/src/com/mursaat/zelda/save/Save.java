@@ -1,5 +1,6 @@
 package com.mursaat.zelda.save;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.mursaat.zelda.entities.instances.InstanceEntity;
@@ -26,7 +27,14 @@ public class Save
         World.setCurrentMap(new Map());
         World.getCurrentMap().initMap();
 
-        FileHandle playerData = Gdx.files.local(saveName + "/player/player.data");
+        FileHandle playerData;
+        if (Gdx.app.getType() == Application.ApplicationType.WebGL) {
+            // For WebGL, we cannot use file-based saves, so we skip loading
+            // The game will start fresh each time
+            return;
+        } else {
+            playerData = Gdx.files.external(saveName + "/player/player.data");
+        }
 
         try
         {
@@ -51,7 +59,7 @@ public class Save
                     for (int y = yChunk - 1; y <= yChunk + 1; y++)
                     {
                         String filename = saveName + "/world/" + x + "." + y + ".chunk";
-                        FileHandle chunkData = Gdx.files.local(filename);
+                        FileHandle chunkData = Gdx.files.external(filename);
 
                         if (chunkData.exists())
                         {
@@ -78,8 +86,13 @@ public class Save
 
     public static void saveChunk(Chunk chunk, boolean destroyEntities)
     {
+        // Skip saving for WebGL
+        if (Gdx.app.getType() == Application.ApplicationType.WebGL) {
+            return;
+        }
+
         String filename = saveName + "/world/" + chunk.x + "." + chunk.y + ".chunk";
-        FileHandle chunkData = Gdx.files.local(filename);
+        FileHandle chunkData = Gdx.files.external(filename);
 
         if (chunkData.exists())
         {
@@ -133,8 +146,13 @@ public class Save
 
     public static FileHandle getChunkFile(int chunkX, int chunkY)
     {
+        // For WebGL, return null since we don't use file-based saves
+        if (Gdx.app.getType() == Application.ApplicationType.WebGL) {
+            return null;
+        }
+
         String filename = saveName + "/world/" + chunkX + "." + chunkY + ".chunk";
-        FileHandle chunkData = Gdx.files.local(filename);
+        FileHandle chunkData = Gdx.files.external(filename);
         return chunkData.exists() ? chunkData : null;
     }
 }
