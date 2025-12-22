@@ -42,7 +42,7 @@ Run
 
 ## Technical Details
 
-- **libGDX Version**: 1.13.0
+- **libGDX Version**: 1.14.0
 - **Gradle Version**: 8.5
 - **Java Version**: 11+
 - **LWJGL Version**: 3 (desktop backend)
