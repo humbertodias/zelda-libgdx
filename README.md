@@ -8,6 +8,8 @@
 
 RPG game like Zelda using libGDX Library
 
+[Play](http://humbertodias.github.io/zelda-libgdx/)
+
 
 ## Prerequisites
 
