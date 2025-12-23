@@ -67,7 +67,5 @@ And finally create the game using the **Tools**
 
 ## References
 
-[libGDX HOME](https://libgdx.badlogicgames.com/)
-
-[libGDX with Maven](https://github.com/libgdx/libgdx/wiki/Maven-integration)
+* [libGDX HOME](https://libgdx.com/wiki/)
 
