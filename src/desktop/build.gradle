@@ -24,6 +24,9 @@ task dist(type: Jar) {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    from {
+        project.assetsDir
+    }
     with jar
 }
 
